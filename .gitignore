@@ -1,42 +1,50 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Visual Studio / Visual Studio for Mac
+.vs/
+bin/
+obj/
+Debug/
+Release/
+*.dll
+*.exe
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# NuGet Packages
+*.nupkg
+packages/
+*.pdb
+*.cache
+*.log
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# MSTest Test Results
+[TestResults|_testResults]/
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# Test project output folder
+**/bin/
+**/obj/
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+# ASP.NET Core
+*.User
+*.psess
+*.dbmdl
+wwwroot/uploads/
+appsettings.json
+appsettings.Development.json
 
-# System files
-.DS_Store
-Thumbs.db
+# Files for Visual Studio Code
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates

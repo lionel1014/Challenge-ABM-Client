@@ -1,0 +1,32 @@
+<table class="table table-bordered border-primary">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+        <th scope="col">CUIT</th>
+        <th scope="col">PhoneNumber</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Address</th>
+        <th scope="col">ACTIONS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <th scope="row">{{i + 1}} </th>
+        <td> {{user.nombre}} </td>
+        <td> {{user.apellido}} </td>
+        <td> {{user.email}} </td>
+        <td> {{user.cuit}} </td>
+        <td> {{user.telCelular}} </td>
+        <td> {{user.fechaNacimiento}} </td>
+        <td> {{user.domicilio}} </td>
+        <td> 
+            <div>
+                <button type="button" class="btn btn-danger" (click)="deleteUser(user)">DELETE</button> 
+                <button type="button" class="btn btn-success" (click)="updateUser(user)">EDIT</button>
+            </div>
+        </td>
+    </tbody>
+  </table>
