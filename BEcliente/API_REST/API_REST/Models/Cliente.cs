@@ -7,9 +7,9 @@
         public string Apellido { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string CUIT { get; set; }
-        public string Domicilio { get; set; }
-        public string TelCelular { get; set; }
-        public string Email { get; set; }
+        public string? Domicilio { get; set; }
+        public string? TelCelular { get; set; }
+        public string? Email { get; set; }
 
         public Cliente(Int64? id, string nombre, string apellido, DateTime fechaNacimiento, string cUIT, string domicilio, string telCelular, string email)
         {

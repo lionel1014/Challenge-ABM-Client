@@ -1,6 +1,7 @@
 ﻿using API_REST.Models;
 using API_REST.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API_REST.Controllers
 {
@@ -14,31 +15,39 @@ namespace API_REST.Controllers
             _clienteService = clienteService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllClientes")]
         public async Task<ActionResult<List<Cliente>>> GetAllClientes()
         {
             return await _clienteService.GetAllClientes();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetAllClientes( Int64 id )
+        [HttpGet("SeachUserByNameOrLastname/{term}")]
+        public async Task<ActionResult<Cliente>> SeachUserByNameOrLastname( string term )
         {
-            var cliente =  await _clienteService.GetOneClient(id);
+            var cliente =  await _clienteService.SeachUsers(term);
             if ( cliente == null )
             {
-                return NotFound();
+                return NotFound("Cliente no encontrado");
             }
             return Ok(cliente);
         }
 
-        [HttpPost]
+        [HttpPost("AddNewCliente")]
         public async Task<ActionResult<List<Cliente>>> AddNewCliente( Cliente clienteBody)
         {
+            if (clienteBody.Nombre.IsNullOrEmpty() || clienteBody.Apellido.IsNullOrEmpty() || clienteBody.CUIT.IsNullOrEmpty() )
+            {
+                return BadRequest("Falto en agregar un campo");
+            }
+            if (clienteBody.Id.HasValue)
+            {
+                return BadRequest("El usuario no puede contener un ID");
+            }
             var clientes = await _clienteService.AddClient(clienteBody);
             return Ok(clientes);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdateCliente/{id}")]
         public async Task<ActionResult<List<Cliente>>> UpdateCliente(int id, Cliente clienteBody)
         {
             var clientes = await _clienteService.UpdateClient(id, clienteBody);
@@ -49,7 +58,7 @@ namespace API_REST.Controllers
             return Ok(clientes);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteCliente/{id}")]
         public async Task<ActionResult<List<Cliente>>> DeleteCliente(int id)
         {
             var clientes = await _clienteService.DeleteClient(id);

@@ -45,10 +45,11 @@ namespace API_REST.Services
             return clientes;
         }
 
-        public async Task<Cliente?> GetOneClient(Int64 id)
+        public async Task<List<Cliente>> SeachUsers(string term)
         {
-            var cliente = await _dataContext.Cliente.FindAsync(id);
-            if (cliente == null)
+            var cliente = await _dataContext.Cliente.Where(c => c.Nombre.ToLower().Contains(term.ToLower().Trim()) || c.Apellido.ToLower().Contains(term.ToLower().Trim()))
+                .ToListAsync();
+            if (cliente.LongCount() == 0 )
             {
                 return null;
             }
